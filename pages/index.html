@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-hospital"></i> HMS</h2>
+                <button title="toggle-btn" class="toggle-btn" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="patients.html"><i class="fas fa-users"></i> Patients</a></li>
+                <li><a href="doctors.html"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="medicines.html"><i class="fas fa-pills"></i> Medicines</a></li>
+                <li><a href="pharmacy.html"><i class="fas fa-prescription-bottle"></i> Pharmacy</a></li>
+                <li><a href="laboratory.html"><i class="fas fa-flask"></i> Laboratory</a></li>
+                <li><a href="billing.html"><i class="fas fa-receipt"></i> Billing</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="hamburger-btn" id="hamburgerBtn" title="Toggle Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search...">
+                        <button title="Search"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <section class="dashboard-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card" onclick="navigateTo('patients.html')">
+                        <div class="stat-icon bg-blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Patients</h3>
+                            <p class="stat-number" id="totalPatients">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" onclick="navigateTo('doctors.html')">
+                        <div class="stat-icon bg-green">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Doctors</h3>
+                            <p class="stat-number" id="totalDoctors">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" onclick="navigateTo('medicines.html')">
+                        <div class="stat-icon bg-orange">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Medicines</h3>
+                            <p class="stat-number" id="totalMedicines">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card" onclick="navigateTo('billing.html')">
+                        <div class="stat-icon bg-purple">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Revenue</h3>
+                            <p class="stat-number" id="totalRevenue">$0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Patient Registrations (Last 7 Days)</h3>
+                        <div id="patientChart" class="chart-container"></div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Department Distribution</h3>
+                        <div id="departmentChart" class="chart-container"></div>
+                    </div>
+                </div>
+
+                <!-- Recent Activities -->
+                <div class="activity-section">
+                    <h3>Recent Activities</h3>
+                    <div class="activity-list" id="activityList">
+                        <p class="no-data">No recent activities</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

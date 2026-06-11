@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicines - Hospital Management System</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-hospital"></i> HMS</h2>
+                <button title="Toggle Sidebar" class="toggle-btn" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="patients.html"><i class="fas fa-users"></i> Patients</a></li>
+                <li><a href="doctors.html"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="medicines.html" class="active"><i class="fas fa-pills"></i> Medicines</a></li>
+                <li><a href="pharmacy.html"><i class="fas fa-prescription-bottle"></i> Pharmacy</a></li>
+                <li><a href="laboratory.html"><i class="fas fa-flask"></i> Laboratory</a></li>
+                <li><a href="billing.html"><i class="fas fa-receipt"></i> Billing</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="hamburger-btn" id="hamburgerBtn" title="Toggle Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <h1>Medicines Management</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="addMedicineBtn">
+                        <i class="fas fa-plus"></i> Add Medicine
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <input type="text" id="searchMedicine" placeholder="Search medicines..." class="search-input">
+                    <select title="Filter by Category"   id="categoryFilter" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="Antibiotic">Antibiotic</option>
+                        <option value="Painkiller">Painkiller</option>
+                        <option value="Anti-inflammatory">Anti-inflammatory</option>
+                        <option value="Vitamin">Vitamin</option>
+                    </select>
+                </div>
+
+                <!-- Medicines Table -->
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Generic Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Expiry Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medicinesList">
+                            <tr>
+                                <td colspan="7" class="text-center">Loading medicines...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Medicine Modal -->
+    <div class="modal" id="medicineModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add Medicine</h2>
+                <button class="close-btn" id="closeMedicineModal">&times;</button>
+            </div>
+            <form id="medicineForm" class="medicine-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="medicineName">Medicine Name *</label>
+                        <input type="text" id="medicineName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="genericName">Generic Name *</label>
+                        <input type="text" id="genericName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="manufacturer">Manufacturer *</label>
+                        <input type="text" id="manufacturer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" required>
+                            <option value="">Select Category</option>
+                            <option value="Antibiotic">Antibiotic</option>
+                            <option value="Painkiller">Painkiller</option>
+                            <option value="Anti-inflammatory">Anti-inflammatory</option>
+                            <option value="Antacid">Antacid</option>
+                            <option value="Vitamin">Vitamin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dosage">Dosage *</label>
+                        <input type="text" id="dosage" placeholder="e.g., 500mg" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="batchNumber">Batch Number *</label>
+                        <input type="text" id="batchNumber" placeholder="e.g., BATCH001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price *</label>
+                        <input type="number" id="price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date *</label>
+                        <input type="date" id="expiryDate" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelMedicineBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Medicine</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/medicines.js"></script>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

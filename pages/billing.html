@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing - Hospital Management System</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-hospital"></i> HMS</h2>
+                <button title="Toggle Sidebar" class="toggle-btn" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="patients.html"><i class="fas fa-users"></i> Patients</a></li>
+                <li><a href="doctors.html"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="medicines.html"><i class="fas fa-pills"></i> Medicines</a></li>
+                <li><a href="pharmacy.html"><i class="fas fa-prescription-bottle"></i> Pharmacy</a></li>
+                <li><a href="laboratory.html"><i class="fas fa-flask"></i> Laboratory</a></li>
+                <li><a href="billing.html" class="active"><i class="fas fa-receipt"></i> Billing</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="hamburger-btn" id="hamburgerBtn" title="Toggle Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <h1>Billing Management</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="createBillBtn">
+                        <i class="fas fa-plus"></i> Create Bill
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <input type="text" id="searchBill" placeholder="Search bills by patient or bill number..." class="search-input">
+                    <select title="Filter by Payment Status" id="paymentStatusFilter" class="filter-select">
+                        <option value="">All Payment Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Partial">Partial</option>
+                        <option value="Paid">Paid</option>
+                    </select>
+                </div>
+
+                <!-- Billing Table -->
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Bill #</th>
+                                <th>Patient</th>
+                                <th>Total Amount</th>
+                                <th>Paid Amount</th>
+                                <th>Payment Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="billsList">
+                            <tr>
+                                <td colspan="7" class="text-center">Loading bills...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Create Bill Modal -->
+    <div class="modal" id="billModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Create Bill</h2>
+                <button class="close-btn" id="closeBillModal">&times;</button>
+            </div>
+            <form id="billForm" class="bill-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="billNumber">Bill Number *</label>
+                        <input type="text" id="billNumber" placeholder="e.g., BILL-001" required readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="billPatientId">Patient *</label>
+                        <select id="billPatientId" required>
+                            <option value="">Select Patient</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="billDoctorId">Doctor *</label>
+                        <select id="billDoctorId" required>
+                            <option value="">Select Doctor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bill-items">
+                    <h4>Bill Items</h4>
+                    <div id="billItemsContainer">
+                        <div class="bill-item">
+                            <input type="text" placeholder="Description" class="item-description" required>
+                            <input type="number" placeholder="Amount" class="item-amount" step="0.01" required>
+                            <button type="button" class="btn-remove-item">Remove</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" id="addBillItem">Add Item</button>
+                </div>
+
+                <div class="billing-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <label for="tax">Tax (%):</label>
+                        <input type="number" id="tax" value="0" step="0.01">
+                    </div>
+                    <div class="summary-row">
+                        <label for="discount">Discount (%):</label>
+                        <input type="number" id="discount" value="0" step="0.01">
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total Amount:</span>
+                        <span id="totalAmount">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBillBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Bill</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/billing.js"></script>
+    <script src="../js/menu.js"></script>
+</body>
+</html>

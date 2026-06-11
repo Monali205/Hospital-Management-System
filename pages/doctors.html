@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors - Hospital Management System</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-hospital"></i> HMS</h2>
+                <button title="Toggle Sidebar" class="toggle-btn" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="patients.html"><i class="fas fa-users"></i> Patients</a></li>
+                <li><a href="doctors.html" class="active"><i class="fas fa-user-md"></i> Doctors</a></li>
+                <li><a href="medicines.html"><i class="fas fa-pills"></i> Medicines</a></li>
+                <li><a href="pharmacy.html"><i class="fas fa-prescription-bottle"></i> Pharmacy</a></li>
+                <li><a href="laboratory.html"><i class="fas fa-flask"></i> Laboratory</a></li>
+                <li><a href="billing.html"><i class="fas fa-receipt"></i> Billing</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="hamburger-btn" id="hamburgerBtn" title="Toggle Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <h1>Doctors Management</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="addDoctorBtn">
+                        <i class="fas fa-plus"></i> Add Doctor
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content Section -->
+            <section class="content-section">
+                <!-- Filters -->
+                <div class="filters-bar">
+                    <input type="text" id="searchDoctor" placeholder="Search doctors..." class="search-input">
+                    <select title="Filter by Specialization" id="specializationFilter" class="filter-select">
+                        <option value="">All Specializations</option>
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Neurology">Neurology</option>
+                        <option value="Orthopedics">Orthopedics</option>
+                        <option value="Pediatrics">Pediatrics</option>
+                        <option value="General Medicine">General Medicine</option>
+                    </select>
+                </div>
+
+                <!-- Doctors Grid/Table -->
+                <div class="doctors-grid" id="doctorsList">
+                    <p class="no-data">Loading doctors...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Doctor Modal -->
+    <div class="modal" id="doctorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add Doctor</h2>
+                <button class="close-btn" id="closeDoctorModal">&times;</button>
+            </div>
+            <form id="doctorForm" class="doctor-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="doctorFirstName">First Name *</label>
+                        <input type="text" id="doctorFirstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorLastName">Last Name *</label>
+                        <input type="text" id="doctorLastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorEmail">Email *</label>
+                        <input type="email" id="doctorEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorPhone">Phone *</label>
+                        <input type="tel" id="doctorPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="specialization">Specialization *</label>
+                        <select id="specialization" required>
+                            <option value="">Select Specialization</option>
+                            <option value="Cardiology">Cardiology</option>
+                            <option value="Neurology">Neurology</option>
+                            <option value="Orthopedics">Orthopedics</option>
+                            <option value="Pediatrics">Pediatrics</option>
+                            <option value="Psychiatry">Psychiatry</option>
+                            <option value="General Medicine">General Medicine</option>
+                            <option value="Surgery">Surgery</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="licenseNumber">License Number *</label>
+                        <input type="text" id="licenseNumber" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Years of Experience *</label>
+                        <input type="number" id="experience" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultationFee">Consultation Fee *</label>
+                        <input type="number" id="consultationFee" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelDoctorBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Doctor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/doctors.js"></script>
+    <script src="../js/menu.js"></script>
+</body>
+</html>
